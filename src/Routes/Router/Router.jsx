@@ -1,5 +1,6 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import AdminRout from '../../DashboardRout/AdminRout';
 import ProtectedBuyer from '../../DashboardRout/ProtectedBuyer';
 import DashboardLayout from '../../Layout/DashboardLayout/DashboardLayout';
 import Main from '../../Layout/Main/Main';
@@ -71,11 +72,11 @@ const Router = () => {
                 },
                 {
                     path: '/dashboard/allsellers',
-                    element: <SelearRout><AllSellers></AllSellers></SelearRout>
+                    element: <AdminRout><AllSellers></AllSellers></AdminRout>
                 },
                 {
                     path: '/dashboard/allbuyers',
-                    element: <ProtectedBuyer><AllBuyers></AllBuyers></ProtectedBuyer>
+                    element: <AdminRout><AllBuyers></AllBuyers></AdminRout>
                 }
             ]
 

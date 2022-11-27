@@ -11,24 +11,28 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
     const [loginUser, setLoginUser] = useState();
     const [loading, setLoading] = useState(true);
+    const [lgUserLoading, setLgUserLoading] = useState(true);
 
 
 
     //sign up with email password
     const handleEmailSingUp = (email, password) => {
         setLoading(true)
+        setLgUserLoading(true)
         return createUserWithEmailAndPassword(Auth, email, password);
     }
 
     //email login
     const handleLogin = (email, password) => {
         setLoading(true)
+        setLgUserLoading(true)
         return signInWithEmailAndPassword(Auth, email, password);
     }
 
     //handle google login
     const handleGoogleLogIn = () => {
         setLoading(true)
+        setLgUserLoading(true)
         return signInWithPopup(Auth, googleProvider);
     }
 
@@ -79,6 +83,7 @@ const AuthProvider = ({ children }) => {
                     // console.log(data);
                     setLoginUser(data)
                     setLoading(false)
+                    setLgUserLoading(false)
                 })
         }
     }, [user?.email])
@@ -94,7 +99,7 @@ const AuthProvider = ({ children }) => {
         loginUser,
         saveUser,
         loading,
-
+        lgUserLoading,
     }
 
     return (

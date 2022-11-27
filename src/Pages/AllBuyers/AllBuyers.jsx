@@ -11,8 +11,6 @@ const AllBuyers = () => {
         }
     })
 
-    console.log(options);
-
     return (
         <div className='my-[22px]'>
             <h1 className='mb-3 text-center text-3xl font-bold text-teal-400'>All Buyers</h1>

@@ -20,7 +20,7 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 text-base-content">
                         {
                             loginUser?.options === 'Buyer' &&
-                            <li><Link className='btn btn-outline mb-1 hover:mx-[1.5px] rounded-md' to='/dashboard'>My Orders</Link></li>
+                            <li><Link className='btn btn-outline mb-1 hover:mx-[1.5px] rounded-md' to='/dashboard/myorders'>My Orders</Link></li>
                         }
                         {
                             loginUser?.options === 'Seller' &&

@@ -3,10 +3,10 @@ import { AuthContext } from '../Context/AuthProvider';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 const SelearRout = ({ children }) => {
-    const { loading, loginUser } = useContext(AuthContext);
+    const { loading, lgUserLoading, loginUser } = useContext(AuthContext);
     const location = useLocation();
 
-    if (loading) {
+    if (loading || lgUserLoading) {
         return <p>Loading...</p>
     }
     console.log(loginUser?.options);
