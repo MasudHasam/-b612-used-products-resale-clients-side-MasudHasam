@@ -2,6 +2,7 @@ import React, { createContext, useEffect, useState } from 'react';
 import app from '../Firebase/Firebase.config';
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateCurrentUser, updateProfile } from 'firebase/auth';
 
+
 export const AuthContext = createContext();
 const Auth = getAuth(app)
 const googleProvider = new GoogleAuthProvider();
@@ -9,6 +10,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
     const [loginUser, setLoginUser] = useState();
+
 
 
     //sign up with email password
@@ -46,6 +48,21 @@ const AuthProvider = ({ children }) => {
     }
 
 
+    //seve user to server
+    const saveUser = (user) => {
+        fetch(`http://localhost:5000/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+
+            })
+    }
 
 
     useEffect(() => {
@@ -53,7 +70,7 @@ const AuthProvider = ({ children }) => {
             fetch(`http://localhost:5000/user/${user.email}`)
                 .then(res => res.json())
                 .then(data => {
-                    console.log(data);
+                    // console.log(data);
                     setLoginUser(data)
                 })
         }
@@ -68,7 +85,8 @@ const AuthProvider = ({ children }) => {
         user,
         handleUserUpdate,
         handleLogin,
-        loginUser
+        loginUser,
+        saveUser
 
     }
 

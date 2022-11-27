@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { handleEmailSingUp, handleUserUpdate } = useContext(AuthContext)
+    const { handleEmailSingUp, handleUserUpdate, saveUser } = useContext(AuthContext)
     const navigaate = useNavigate();
 
     const handelSignUp = (data) => {
@@ -21,6 +21,7 @@ const SignUp = () => {
                         options: data.options
                     }
                     saveUser(userInfo)
+                    navigaate('/')
                 }
                 console.log(user);
             })
@@ -28,21 +29,7 @@ const SignUp = () => {
     }
 
 
-    //seve user to server
-    const saveUser = (user) => {
-        fetch(`http://localhost:5000/users`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(user)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                navigaate('/')
-            })
-    }
+
 
 
     return (
