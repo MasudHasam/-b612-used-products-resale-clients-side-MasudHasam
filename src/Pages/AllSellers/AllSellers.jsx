@@ -3,8 +3,8 @@ import { useQuery } from '@tanstack/react-query';
 
 const AllUsers = () => {
 
-    const { data: options = [] } = useQuery({
-        queryKey: ['options'],
+    const { data: sellers = [], refetch } = useQuery({
+        queryKey: ['sellers'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/users/Seller`)
             const data = await res.json();
@@ -12,6 +12,19 @@ const AllUsers = () => {
         }
     })
 
+
+    const handleSellerDelete = (seller) => {
+        fetch(`http://localhost:5000/user/${seller._id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    alert('user deleted successfully')
+                }
+                refetch()
+            })
+    }
 
     return (
         <div className='my-[22px]'>
@@ -28,9 +41,9 @@ const AllUsers = () => {
                     </thead>
                     <tbody>
                         {
-                            options?.map(option =>
+                            sellers?.map(sellers =>
 
-                                <tr key={option._id}>
+                                <tr key={sellers._id}>
                                     <td>
                                         <div className="flex items-center space-x-3">
                                             <div className="avatar">
@@ -39,14 +52,14 @@ const AllUsers = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="font-bold">{option.name}</div>
+                                                <div className="font-bold">{sellers.name}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{option.email}</td>
-                                    <td>{option.options}</td>
+                                    <td>{sellers.email}</td>
+                                    <td>{sellers.options}</td>
                                     <th>
-                                        <button className="btn btn-outline btn-error btn-xs">Delete</button>
+                                        <button onClick={() => handleSellerDelete(sellers)} className="btn btn-outline btn-error btn-xs">Delete</button>
                                     </th>
                                 </tr>
 

@@ -2,14 +2,27 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 const AllBuyers = () => {
-    const { data: options = [] } = useQuery({
-        queryKey: ['options'],
+    const { data: Buyers = [], refetch } = useQuery({
+        queryKey: ['Buyers'],
         queryFn: async () => {
             const res = await fetch(`http://localhost:5000/users/Buyer`)
             const data = await res.json();
             return data;
         }
     })
+
+    const handleBuyerDelete = (buyer) => {
+        fetch(`http://localhost:5000/user/${buyer._id}`, {
+            method: "DELETE"
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    alert('user deleted successfully')
+                }
+                refetch()
+            })
+    }
 
     return (
         <div className='my-[22px]'>
@@ -26,9 +39,9 @@ const AllBuyers = () => {
                     </thead>
                     <tbody>
                         {
-                            options?.map(option =>
+                            Buyers?.map(buyer =>
 
-                                <tr key={option._id}>
+                                <tr key={buyer._id}>
                                     <td>
                                         <div className="flex items-center space-x-3">
                                             <div className="avatar">
@@ -37,14 +50,14 @@ const AllBuyers = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                <div className="font-bold">{option.name}</div>
+                                                <div className="font-bold">{buyer.name}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{option.email}</td>
-                                    <td>{option.options}</td>
+                                    <td>{buyer.email}</td>
+                                    <td>{buyer.options}</td>
                                     <th>
-                                        <button className="btn btn-outline btn-error btn-xs">Delete</button>
+                                        <button onClick={() => handleBuyerDelete(buyer)} className="btn btn-outline btn-error btn-xs">Delete</button>
                                     </th>
                                 </tr>
 
