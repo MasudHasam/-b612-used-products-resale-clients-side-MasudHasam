@@ -1,13 +1,21 @@
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { handleGoogleLogIn } = useContext(AuthContext);
-    const handelLogin = (data) => {
-        console.log(data);
+    const { handleGoogleLogIn, handleLogin } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handelEmailLogin = (data) => {
+        handleLogin(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                navigate('/')
+                console.log(user);
+            })
+            .catch(err => console.log(err));
     }
 
     const handleGoogleSignIn = () => {
@@ -19,11 +27,12 @@ const Login = () => {
             .catch(err => console.log(err));
     }
 
+
     return (
         <div className=' my-10'>
             <h1 className='text-center text-2xl text-sky-400'>Please login</h1>
             <div className='flex justify-center items-center'>
-                <form onSubmit={handleSubmit(handelLogin)} className=' lg:w-96 shadow-2xl px-2 py-2 bg-slate-500 rounded-md mt-2'>
+                <form onSubmit={handleSubmit(handelEmailLogin)} className=' lg:w-96 shadow-2xl px-2 py-2 bg-slate-500 rounded-md mt-2'>
                     <div className="form-control w-full rounded-md">
                         <label className="label">
                             <span className="label-text text-white">Email</span>

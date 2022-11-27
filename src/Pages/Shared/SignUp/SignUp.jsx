@@ -1,22 +1,49 @@
 import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { handleEmailSingUp, handleUserUpdate } = useContext(AuthContext)
+    const navigaate = useNavigate();
 
     const handelSignUp = (data) => {
-        console.log(data.email, data.password);
+        // console.log(data);
         handleEmailSingUp(data.email, data.password)
             .then(result => {
                 const user = result.user;
                 handleUserUpdate({ displayName: data.name })
+                if (user) {
+                    const userInfo = {
+                        name: data.name,
+                        email: user.email,
+                        options: data.options
+                    }
+                    saveUser(userInfo)
+                }
                 console.log(user);
             })
             .catch(err => console.log(err));
     }
+
+
+    //seve user to server
+    const saveUser = (user) => {
+        fetch(`http://localhost:5000/users`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                navigaate('/')
+            })
+    }
+
 
     return (
         <div className='my-10'>
