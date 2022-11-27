@@ -10,6 +10,7 @@ import MyProducts from '../../Pages/MyProducts/MyProducts';
 import Login from '../../Pages/Shared/Login/Login';
 import SignUp from '../../Pages/Shared/SignUp/SignUp';
 import PrivetRout from '../../PrivetRout/PrivetRout';
+import SelearRout from '../../SelearRout/SelearRout';
 
 const Router = () => {
 
@@ -42,11 +43,11 @@ const Router = () => {
                 },
                 {
                     path: '/addproduct',
-                    element: <AddProduct></AddProduct>
+                    element: <SelearRout><AddProduct></AddProduct></SelearRout>
                 },
                 {
                     path: '/myproducts',
-                    element: <MyProducts></MyProducts>
+                    element: <SelearRout><MyProducts></MyProducts></SelearRout>
                 }
             ]
         }

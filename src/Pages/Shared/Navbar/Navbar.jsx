@@ -1,25 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import logo from '../../../Assets/giveandtake.png'
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const Navbar = () => {
-    const { user, handleLogOut } = useContext(AuthContext);
-    const [loginUser, setLoginUser] = useState();
-    // console.log(user);
+    const { user, handleLogOut, loginUser } = useContext(AuthContext);
 
-    useEffect(() => {
-        if (user?.email) {
-            fetch(`http://localhost:5000/user/${user.email}`)
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    setLoginUser(data)
-                })
-        }
-    }, [user?.email])
-    // console.log(LoginUser);
 
 
     const menue = <>

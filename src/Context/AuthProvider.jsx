@@ -8,6 +8,7 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
+    const [loginUser, setLoginUser] = useState();
 
 
     //sign up with email password
@@ -47,6 +48,19 @@ const AuthProvider = ({ children }) => {
 
 
 
+    useEffect(() => {
+        if (user?.email) {
+            fetch(`http://localhost:5000/user/${user.email}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    setLoginUser(data)
+                })
+        }
+    }, [user?.email])
+    // console.log(LoginUser);
+
+
     const info = {
         handleEmailSingUp,
         handleGoogleLogIn,
@@ -54,6 +68,8 @@ const AuthProvider = ({ children }) => {
         user,
         handleUserUpdate,
         handleLogin,
+        loginUser
+
     }
 
     return (
