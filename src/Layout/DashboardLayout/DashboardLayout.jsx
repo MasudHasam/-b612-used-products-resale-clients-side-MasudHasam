@@ -13,7 +13,7 @@ const DashboardLayout = () => {
             <Navbar></Navbar>
             <div className="drawer drawer-mobile">
                 <input id="dashboardMenue" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content flex flex-col">
                     <Outlet></Outlet>
                 </div>
                 <div className="drawer-side">
@@ -33,7 +33,7 @@ const DashboardLayout = () => {
                         {
                             loginUser?.role === 'Admin' &&
                             <>
-                                <li><Link className='btn btn-outline mb-1 hover:ml-[1.5px] rounded-md' to='/dashboard/allusers'>All Users</Link></li>
+                                <li><Link className='btn btn-outline mb-1 hover:ml-[1.5px] rounded-md' to='/dashboard/allusers'>All Sellers</Link></li>
                                 <li><Link className='btn btn-outline mb-1 hover:ml-[1.5px] rounded-md' to='/dashboard/allbuyers'>All Buyers</Link></li>
                             </>
                         }

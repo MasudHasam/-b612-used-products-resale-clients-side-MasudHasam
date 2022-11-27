@@ -4,7 +4,7 @@ import DashboardLayout from '../../Layout/DashboardLayout/DashboardLayout';
 import Main from '../../Layout/Main/Main';
 import AddProduct from '../../Pages/AddProduct/AddProduct';
 import AllBuyers from '../../Pages/AllBuyers/AllBuyers';
-import AllUsers from '../../Pages/AllUsers/AllUsers';
+import AllSellers from '../../Pages/AllSellers/AllSellers'
 import Blog from '../../Pages/Blog/Blog';
 import ErrorPage from '../../Pages/ErrorPage/ErrorPage';
 import Items from '../../Pages/HomeAll/Categories/Items/Items';
@@ -65,7 +65,7 @@ const Router = () => {
                 },
                 {
                     path: '/dashboard/allusers',
-                    element: <AllUsers></AllUsers>
+                    element: <AllSellers></AllSellers>
                 },
                 {
                     path: '/dashboard/allbuyers',
