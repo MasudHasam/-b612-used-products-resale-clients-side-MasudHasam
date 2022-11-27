@@ -7,7 +7,6 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const DashboardLayout = () => {
     const { user, loginUser } = useContext(AuthContext);
-    console.log(loginUser);
     return (
         <div>
             <Navbar></Navbar>
@@ -33,7 +32,7 @@ const DashboardLayout = () => {
                         {
                             loginUser?.role === 'Admin' &&
                             <>
-                                <li><Link className='btn btn-outline mb-1 hover:ml-[1.5px] rounded-md' to='/dashboard/allusers'>All Sellers</Link></li>
+                                <li><Link className='btn btn-outline mb-1 hover:ml-[1.5px] rounded-md' to='/dashboard/allsellers'>All Sellers</Link></li>
                                 <li><Link className='btn btn-outline mb-1 hover:ml-[1.5px] rounded-md' to='/dashboard/allbuyers'>All Buyers</Link></li>
                             </>
                         }

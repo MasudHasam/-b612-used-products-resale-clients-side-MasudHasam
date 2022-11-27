@@ -12,13 +12,12 @@ const AllUsers = () => {
         }
     })
 
-    console.log(options);
 
     return (
         <div className='my-[22px]'>
             <h1 className='mb-3 text-center text-3xl font-bold text-teal-400'>All Sellers</h1>
-            <div className="overflow-x-auto w-full">
-                <table className="table w-full">
+            <div className="overflow-x-auto w-11/12 mx-auto">
+                <table className="table w-11/12">
                     <thead>
                         <tr>
                             <th>Name</th>

@@ -1,11 +1,13 @@
 import React from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ProtectedBuyer from '../../DashboardRout/ProtectedBuyer';
 import DashboardLayout from '../../Layout/DashboardLayout/DashboardLayout';
 import Main from '../../Layout/Main/Main';
 import AddProduct from '../../Pages/AddProduct/AddProduct';
 import AllBuyers from '../../Pages/AllBuyers/AllBuyers';
 import AllSellers from '../../Pages/AllSellers/AllSellers'
 import Blog from '../../Pages/Blog/Blog';
+import DetaultPage from '../../Pages/DefaultPage/DetaultPage';
 import ErrorPage from '../../Pages/ErrorPage/ErrorPage';
 import Items from '../../Pages/HomeAll/Categories/Items/Items';
 import Home from '../../Pages/HomeAll/Home/Home'
@@ -53,7 +55,11 @@ const Router = () => {
             children: [
                 {
                     path: '/dashboard',
-                    element: <MyOrders></MyOrders>
+                    element: <DetaultPage></DetaultPage>
+                },
+                {
+                    path: '/dashboard/myorders',
+                    element: <ProtectedBuyer><MyOrders></MyOrders></ProtectedBuyer>
                 },
                 {
                     path: '/dashboard/addproduct',
@@ -64,12 +70,12 @@ const Router = () => {
                     element: <SelearRout><MyProducts></MyProducts></SelearRout>
                 },
                 {
-                    path: '/dashboard/allusers',
-                    element: <AllSellers></AllSellers>
+                    path: '/dashboard/allsellers',
+                    element: <SelearRout><AllSellers></AllSellers></SelearRout>
                 },
                 {
                     path: '/dashboard/allbuyers',
-                    element: <AllBuyers></AllBuyers>
+                    element: <ProtectedBuyer><AllBuyers></AllBuyers></ProtectedBuyer>
                 }
             ]
 

@@ -1,19 +1,19 @@
 import React, { useContext } from 'react';
+import { Navigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthProvider';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
-const SelearRout = ({ children }) => {
+const ProtectedBuyer = ({ children }) => {
     const { loading, loginUser } = useContext(AuthContext);
     const location = useLocation();
 
     if (loading) {
         return <p>Loading...</p>
     }
-    console.log(loginUser?.options);
-    if (loginUser?.options === 'Seller') {
+
+    if (loginUser?.options === 'Buyer') {
         return children;
     }
     return <Navigate to='/login' state={{ from: location }} replace></Navigate>
 };
 
-export default SelearRout;
+export default ProtectedBuyer;
