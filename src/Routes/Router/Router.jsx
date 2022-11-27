@@ -9,6 +9,7 @@ import Home from '../../Pages/HomeAll/Home/Home'
 import MyProducts from '../../Pages/MyProducts/MyProducts';
 import Login from '../../Pages/Shared/Login/Login';
 import SignUp from '../../Pages/Shared/SignUp/SignUp';
+import PrivetRout from '../../PrivetRout/PrivetRout';
 
 const Router = () => {
 
@@ -25,7 +26,7 @@ const Router = () => {
                 {
                     path: '/items/:id',
                     loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
-                    element: <Items></Items>
+                    element: <PrivetRout><Items></Items></PrivetRout>
                 },
                 {
                     path: '/login',

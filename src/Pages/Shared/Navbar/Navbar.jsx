@@ -26,7 +26,7 @@ const Navbar = () => {
         <li><Link className='btn-sm btn-outline mr-0 lg:mr-2 rounded-md' to='/'>Home</Link></li>
         <li><Link className='btn-sm btn-outline rounded-md' to='/blog'>Blog</Link></li>
         {
-            loginUser?.options === 'Seller' &&
+            user?.email && loginUser?.options === 'Seller' &&
             <>
                 <li><Link className='btn-sm btn-outline rounded-md' to='/addproduct'>Add Product</Link></li>
                 <li><Link className='btn-sm btn-outline rounded-md' to='/myproducts'>My Product</Link></li>
