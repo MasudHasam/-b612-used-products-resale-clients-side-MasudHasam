@@ -3,14 +3,14 @@ import { AuthContext } from '../Context/AuthProvider';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 
 const SelearRout = ({ children }) => {
-    const { user, loading, loginUser } = useContext(AuthContext);
+    const { loading, loginUser } = useContext(AuthContext);
     const location = useLocation();
 
     if (loading) {
         return <p>Loading...</p>
     }
-
-    if (loginUser?.ontions === 'Seller') {
+    console.log(loginUser?.options);
+    if (loginUser.options === 'Seller') {
         return children;
     }
     return <Navigate to='/login' state={{ from: location }} replace></Navigate>

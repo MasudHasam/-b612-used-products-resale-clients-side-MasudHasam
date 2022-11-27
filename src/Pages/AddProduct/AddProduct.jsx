@@ -27,7 +27,7 @@ const AddProduct = () => {
     }
 
     return (
-        <div className='my-10'>
+        <div className='mt-[500px] lg:mt-[540px]'>
             <h1 className='text-3xl font-semibold italic text-red-400 text-center mt-4'>Add a new product</h1>
             <div className='flex justify-center items-center'>
                 <form onSubmit={handleSubmit(handleAddProduct)} className=' lg:w-96 shadow-2xl px-2 py-2 bg-slate-500 rounded-md mt-2'>

@@ -10,21 +10,25 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState();
     const [loginUser, setLoginUser] = useState();
+    const [loading, setLoading] = useState(true);
 
 
 
     //sign up with email password
     const handleEmailSingUp = (email, password) => {
+        setLoading(true)
         return createUserWithEmailAndPassword(Auth, email, password);
     }
 
     //email login
     const handleLogin = (email, password) => {
+        setLoading(true)
         return signInWithEmailAndPassword(Auth, email, password);
     }
 
     //handle google login
     const handleGoogleLogIn = () => {
+        setLoading(true)
         return signInWithPopup(Auth, googleProvider);
     }
 
@@ -65,6 +69,7 @@ const AuthProvider = ({ children }) => {
     }
 
 
+
     useEffect(() => {
         if (user?.email) {
             fetch(`http://localhost:5000/user/${user.email}`)
@@ -72,11 +77,11 @@ const AuthProvider = ({ children }) => {
                 .then(data => {
                     // console.log(data);
                     setLoginUser(data)
+                    setLoading(false)
                 })
         }
     }, [user?.email])
     // console.log(LoginUser);
-
 
     const info = {
         handleEmailSingUp,
@@ -86,7 +91,8 @@ const AuthProvider = ({ children }) => {
         handleUserUpdate,
         handleLogin,
         loginUser,
-        saveUser
+        saveUser,
+        loading,
 
     }
 

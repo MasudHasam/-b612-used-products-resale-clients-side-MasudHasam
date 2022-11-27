@@ -12,10 +12,10 @@ const Navbar = () => {
         <li><Link className='btn-sm btn-outline mr-0 lg:mr-2 rounded-md' to='/'>Home</Link></li>
         <li><Link className='btn-sm btn-outline rounded-md' to='/blog'>Blog</Link></li>
         {
-            user?.email && loginUser?.options === 'Seller' &&
+            user?.email &&
+            // && loginUser?.options === 'Seller'
             <>
-                <li><Link className='btn-sm btn-outline rounded-md' to='/addproduct'>Add Product</Link></li>
-                <li><Link className='btn-sm btn-outline rounded-md' to='/myproducts'>My Product</Link></li>
+                <li><Link className='btn-sm btn-outline rounded-md hover:text-pink-500' to='/dashboard'>Dashboard</Link></li>
             </>
         }
     </>
@@ -60,6 +60,9 @@ const Navbar = () => {
                             :
                             <Link to='/login' className="btn btn-outline btn-sm">Login</Link>
                     }
+                    <label htmlFor="dashboardMenue" tabIndex={0} className="btn btn-ghost lg:hidden">
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    </label>
                 </div>
             </div>
         </div>
