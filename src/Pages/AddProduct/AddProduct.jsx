@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
 
 
 const AddProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
-
+    const { user } = useContext(AuthContext)
     const handleAddProduct = (data) => {
-        // console.log(data);
+
+        data.email = user?.email;
+        data.selerName = user?.displayName;
+        data.status = 'Unsold';
+
         fetch('http://localhost:5000/product', {
             method: "POST",
             headers: {
@@ -21,7 +26,7 @@ const AddProduct = () => {
                 console.log(data);
                 if (data.acknowledged) {
                     alert('product added successfully');
-                    navigate('/myproducts')
+                    navigate('/dashboard/myproducts')
                 }
             })
     }

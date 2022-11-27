@@ -9,7 +9,7 @@ const SelearRout = ({ children }) => {
     if (loading || lgUserLoading) {
         return <p>Loading...</p>
     }
-    console.log(loginUser?.options);
+
     if (loginUser?.options === 'Seller') {
         return children;
     }
