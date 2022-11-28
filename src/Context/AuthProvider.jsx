@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
     //seve user to server
     const saveUser = (user) => {
         user.status = 'Not verified';
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://used-product-resale-server-orcin.vercel.app/users`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -79,7 +79,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (user?.email) {
-            fetch(`http://localhost:5000/user/${user.email}`)
+            fetch(`https://used-product-resale-server-orcin.vercel.app/user/${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     // console.log(data);
@@ -94,7 +94,7 @@ const AuthProvider = ({ children }) => {
 
     //get jwt token
     const getJwtToken = (email) => {
-        fetch(`http://localhost:5000/jwt?email=${email}`)
+        fetch(`https://used-product-resale-server-orcin.vercel.app/jwt?email=${email}`)
             .then(res => res.json())
             .then(data => {
                 const token = (data?.accessToken);

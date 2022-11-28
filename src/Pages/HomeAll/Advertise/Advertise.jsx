@@ -11,7 +11,7 @@ const Advertise = () => {
     // const { data: advertises = [], refetch } = useQuery({
     //     queryKey: ['advertises'],
     //     queryFn: async () => {
-    //         const res = await fetch(`http://localhost:5000/advertisedProduct/${user?.email}`, {
+    //         const res = await fetch(`https://used-product-resale-server-orcin.vercel.app/advertisedProduct/${user?.email}`, {
     //             headers: {
     //                 authorization: `bearer ${localStorage.getItem('accessToken')}`
     //             }
@@ -24,7 +24,7 @@ const Advertise = () => {
         if (!user?.email) {
             return;
         } else {
-            fetch(`http://localhost:5000/advertisedProduct/${user?.email}`, {
+            fetch(`https://used-product-resale-server-orcin.vercel.app/advertisedProduct/${user?.email}`, {
                 // headers: {
                 //     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 // }

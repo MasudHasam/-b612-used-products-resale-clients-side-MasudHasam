@@ -34,7 +34,7 @@ const Router = () => {
                 },
                 {
                     path: '/items/:id',
-                    loader: ({ params }) => fetch(`http://localhost:5000/product/${params.id}`),
+                    loader: ({ params }) => fetch(`https://used-product-resale-server-orcin.vercel.app/product/${params.id}`),
                     element: <PrivetRout><Items></Items></PrivetRout>
                 },
                 {

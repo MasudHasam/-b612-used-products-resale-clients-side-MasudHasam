@@ -9,7 +9,7 @@ const MyProducts = () => {
     const { data: products = [], refetch } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/products/${user?.email}`)
+            const res = await fetch(`https://used-product-resale-server-orcin.vercel.app/products/${user?.email}`)
             const data = await res.json();
             return data;
         }
@@ -17,7 +17,7 @@ const MyProducts = () => {
 
 
     const advertiseIt = (product) => {
-        fetch(`http://localhost:5000/product/${product._id}`, {
+        fetch(`https://used-product-resale-server-orcin.vercel.app/product/${product._id}`, {
             method: 'PUT',
         })
             .then(res => res.json())
@@ -32,7 +32,7 @@ const MyProducts = () => {
     }
 
     const deleteProduct = (id) => {
-        fetch(`http://localhost:5000/product/${id}`, {
+        fetch(`https://used-product-resale-server-orcin.vercel.app/product/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

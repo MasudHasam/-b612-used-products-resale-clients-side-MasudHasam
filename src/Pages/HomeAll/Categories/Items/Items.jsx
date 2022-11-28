@@ -10,7 +10,7 @@ const Items = () => {
 
 
     const reporteItem = (product) => {
-        fetch(`http://localhost:5000/products/${product._id}`, {
+        fetch(`https://used-product-resale-server-orcin.vercel.app/products/${product._id}`, {
             method: 'PUT',
         })
             .then(res => res.json())

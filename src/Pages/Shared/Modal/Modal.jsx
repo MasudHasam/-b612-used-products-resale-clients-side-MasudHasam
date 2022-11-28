@@ -24,7 +24,7 @@ const Modal = ({ data, setOpenModal }) => {
             picture: data.picture,
         }
 
-        fetch(`http://localhost:5000/order`, {
+        fetch(`https://used-product-resale-server-orcin.vercel.app/order`, {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

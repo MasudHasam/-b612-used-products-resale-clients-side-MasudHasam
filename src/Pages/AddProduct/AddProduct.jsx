@@ -15,7 +15,7 @@ const AddProduct = () => {
         data.selerName = user?.displayName;
         data.status = 'Unsold';
 
-        fetch('http://localhost:5000/product', {
+        fetch('https://used-product-resale-server-orcin.vercel.app/product', {
             method: "POST",
             headers: {
                 'content-type': 'application/json',

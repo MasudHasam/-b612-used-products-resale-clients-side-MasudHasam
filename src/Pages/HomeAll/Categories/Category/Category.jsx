@@ -6,14 +6,14 @@ import axios from "axios";
 const Category = () => {
     const [categorys, setCategorys] = React.useState();
     useEffect(() => {
-        axios.get('http://localhost:5000/category')
+        axios.get('https://used-product-resale-server-orcin.vercel.app/category')
             .then((response) => setCategorys(response.data))
     }, [])
 
     // const { data: categorys = [] } = useQuery({
     //     queryKey: ['category'],
     //     queryFn: async () => {
-    //         const res = await fetch('http://localhost:5000/category')
+    //         const res = await fetch('https://used-product-resale-server-orcin.vercel.app/category')
     //         const data = await res.json();
     //         return data;
     //     }

@@ -7,7 +7,7 @@ const AllUsers = () => {
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/Seller`, {
+            const res = await fetch(`https://used-product-resale-server-orcin.vercel.app/users/Seller`, {
                 headers: {
                     authorization: `bearer ${localStorage.getItem('accessToken')}`
                 }
@@ -19,7 +19,7 @@ const AllUsers = () => {
 
 
     const handleSellerDelete = (seller) => {
-        fetch(`http://localhost:5000/user/${seller._id}`, {
+        fetch(`https://used-product-resale-server-orcin.vercel.app/user/${seller._id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
@@ -35,7 +35,7 @@ const AllUsers = () => {
     //update seller status
     const updateSeller = (seller) => {
         console.log(seller);
-        fetch(`http://localhost:5000/seller/${seller._id}`, {
+        fetch(`https://used-product-resale-server-orcin.vercel.app/seller/${seller._id}`, {
             method: "PUT",
         })
             .then(res => res.json())

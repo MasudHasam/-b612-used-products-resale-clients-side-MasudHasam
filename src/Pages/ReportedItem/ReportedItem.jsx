@@ -9,14 +9,14 @@ const ReportedItem = () => {
     const { data: reportedItems = [], refetch } = useQuery({
         queryKey: ['reporteditems'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/reportedItems`)
+            const res = await fetch(`https://used-product-resale-server-orcin.vercel.app/reportedItems`)
             const data = await res.json();
             return (data);
         }
     })
 
     const deleteReportedItem = (id) => {
-        fetch(`http://localhost:5000/reportedItems/${id}`, {
+        fetch(`https://used-product-resale-server-orcin.vercel.app/reportedItems/${id}`, {
             method: "DELETE"
         })
             .then(res => res.json())
