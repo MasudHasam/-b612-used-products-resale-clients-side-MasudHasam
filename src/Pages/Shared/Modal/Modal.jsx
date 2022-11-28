@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const Modal = ({ data, setOpenModal }) => {
-
-
+    const { user } = useContext(AuthContext);
     const handelBooking = (event) => {
         event.preventDefault();
         const form = event.target;
@@ -19,9 +19,25 @@ const Modal = ({ data, setOpenModal }) => {
             itemPrice,
             phone,
             location,
+            picture: data.picture,
         }
 
-        console.log(bookingInfo);
+        fetch(`http://localhost:5000/order`, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bookingInfo)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    alert('item is booked')
+                } else {
+                    alert('item already added')
+                }
+            })
         setOpenModal()
     }
 
@@ -36,11 +52,11 @@ const Modal = ({ data, setOpenModal }) => {
                         <label className="label">
                             <span className="label-text">Name</span>
                         </label>
-                        <input defaultValue={'masud'} readOnly type="text" name='name' placeholder="name" className="input rounded-md input-bordered w-full" />
+                        <input defaultValue={user?.displayName} readOnly type="text" name='name' placeholder="name" className="input rounded-md input-bordered w-full" />
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input defaultValue={'masud@gmail.com'} readOnly type="text" name='email' placeholder="email" className="input rounded-md input-bordered w-full" />
+                        <input defaultValue={user?.email} readOnly type="text" name='email' placeholder="email" className="input rounded-md input-bordered w-full" />
                         <label className="label">
                             <span className="label-text">Item Name</span>
                         </label>
