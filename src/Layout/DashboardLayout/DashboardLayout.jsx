@@ -34,6 +34,7 @@ const DashboardLayout = () => {
                             <>
                                 <li><Link className='btn btn-outline mb-1 hover:ml-[1.5px] rounded-md' to='/dashboard/allsellers'>All Sellers</Link></li>
                                 <li><Link className='btn btn-outline mb-1 hover:ml-[1.5px] rounded-md' to='/dashboard/allbuyers'>All Buyers</Link></li>
+                                <li><Link className='btn btn-outline mb-1 hover:ml-[1.5px] rounded-md' to='/dashboard/reporteditems'>Reported Items</Link></li>
                             </>
                         }
                     </ul>

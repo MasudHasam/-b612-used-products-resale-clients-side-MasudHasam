@@ -22,7 +22,7 @@ const MyOrders = () => {
                 {
                     orders.map(order =>
                         <div key={order._id} className="card card-compact full bg-base-100 shadow-xl">
-                            <figure><img className='w-[200px ] h-[200pxs]' src={order.picture} alt="Shoes" /></figure>
+                            <figure><img className='w-[200px ] h-[200px]' src={order.picture} alt="Shoes" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{order.itemName}</h2>
                                 <p>Price: ${order.itemPrice}</p>

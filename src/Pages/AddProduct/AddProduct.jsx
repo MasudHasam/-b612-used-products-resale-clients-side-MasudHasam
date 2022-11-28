@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const AddProduct = () => {
@@ -25,11 +26,11 @@ const AddProduct = () => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    alert('product added successfully');
                     navigate('/dashboard/myproducts')
                 }
             })
     }
+
 
     return (
         <div className=''>
@@ -121,7 +122,6 @@ const AddProduct = () => {
                     {/* {
                     loginError && <p className='text-red-500'>{loginError}</p>
                 } */}
-
                 </form>
             </div>
         </div>

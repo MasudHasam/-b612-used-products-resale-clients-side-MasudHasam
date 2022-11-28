@@ -60,8 +60,8 @@ const SignUp = () => {
                             <span className="label-text text-white">Seller/Buyer</span>
                         </label>
                         <select {...register('options')} className="select input-bordered w-full mb-3">
-                            <option selected>Seller</option>
-                            <option>Buyer</option>
+                            <option>Seller</option>
+                            <option selected>Buyer</option>
                         </select>
                     </div>
                     <input className='btn btn-outline bg-white  rounded-md w-full' value='Sign Upp' type="submit" />

@@ -8,7 +8,21 @@ const Items = () => {
     const data = useLoaderData();
     const [openMOdal, setOpenModal] = useState(false);
 
-    // console.log(data);
+
+    const reporteItem = (product) => {
+        fetch(`http://localhost:5000/products/${product._id}`, {
+            method: 'PUT',
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.matchedCount) {
+                    alert('Product Reported Successfully')
+                } else {
+                    alert('already in report list')
+                }
+            })
+    }
 
     return (
         <div className='my-12'>
@@ -20,6 +34,7 @@ const Items = () => {
                         data={sData}
                         setOpenModal={setOpenModal}
                         openMOdal={openMOdal}
+                        reporteItem={reporteItem}
                     ></Item>)
                 }
             </div>

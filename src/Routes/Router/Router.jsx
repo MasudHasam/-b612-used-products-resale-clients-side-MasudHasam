@@ -14,6 +14,7 @@ import Items from '../../Pages/HomeAll/Categories/Items/Items';
 import Home from '../../Pages/HomeAll/Home/Home'
 import MyOrders from '../../Pages/MyOrders/MyOrders';
 import MyProducts from '../../Pages/MyProducts/MyProducts';
+import ReportedItem from '../../Pages/ReportedItem/ReportedItem';
 import Login from '../../Pages/Shared/Login/Login';
 import SignUp from '../../Pages/Shared/SignUp/SignUp';
 import PrivetRout from '../../PrivetRout/PrivetRout';
@@ -77,6 +78,10 @@ const Router = () => {
                 {
                     path: '/dashboard/allbuyers',
                     element: <AdminRout><AllBuyers></AllBuyers></AdminRout>
+                },
+                {
+                    path: '/dashboard/reporteditems',
+                    element: <AdminRout><ReportedItem></ReportedItem></AdminRout>
                 }
             ]
 

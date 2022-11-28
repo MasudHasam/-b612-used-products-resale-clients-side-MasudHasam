@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
-import { async } from '@firebase/util';
+import toast, { Toaster } from 'react-hot-toast';
 
 const MyProducts = () => {
     const { user } = useContext(AuthContext);
@@ -23,10 +23,10 @@ const MyProducts = () => {
             .then(res => res.json())
             .then(data => {
                 console.log(data);
-                if (data.matchedCount.length > 0) {
-                    alert('Your product is in advertise now')
+                if (data.matchedCount) {
+                    toast.success('Your product is in advertise now')
                 } else {
-                    alert('already added')
+                    toast.error('already added')
                 }
             })
     }
@@ -39,7 +39,7 @@ const MyProducts = () => {
             .then(data => {
                 console.log(data);
                 if (data.deletedCount > 0) {
-                    alert('deleted successfully')
+                    toast.success('deleted successfully')
                 }
                 refetch()
             })
@@ -68,6 +68,7 @@ const MyProducts = () => {
                                 <button onClick={() => deleteProduct(product._id)} className="btn btn-primary">Delete</button>
                             </div>
                         </div>
+                        <Toaster></Toaster>
                     </div>
 
                 )

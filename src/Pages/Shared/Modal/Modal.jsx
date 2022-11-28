@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Modal = ({ data, setOpenModal }) => {
+    const notify = () => toast('Here is your toast.');
     const { user } = useContext(AuthContext);
     const handelBooking = (event) => {
         event.preventDefault();
@@ -33,9 +35,9 @@ const Modal = ({ data, setOpenModal }) => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    alert('item is booked')
+                    toast.success('item is booked')
                 } else {
-                    alert('item already added')
+                    toast.error('item already added')
                 }
             })
         setOpenModal()
@@ -74,6 +76,7 @@ const Modal = ({ data, setOpenModal }) => {
                         </label>
                         <input type="text" placeholder="Enter your location details" name='location' className="input rounded-md input-bordered w-full" />
                         <button className="input input-bordered w-full btn btn-ghost">Submit</button>
+                        <Toaster></Toaster>
                     </form>
                 </div>
             </div>
