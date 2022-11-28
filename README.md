@@ -13,3 +13,7 @@ Key Features:
 .use daisy ui
 .use firebase authentication
 .use full functional crud operation
+
+
+Admin email: admin@gmail.com
+Admin Pass: mmmmmm
