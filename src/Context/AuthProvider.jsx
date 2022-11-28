@@ -12,6 +12,7 @@ const AuthProvider = ({ children }) => {
     const [loginUser, setLoginUser] = useState();
     const [loading, setLoading] = useState(true);
     const [lgUserLoading, setLgUserLoading] = useState(true);
+    const [token, setToken] = useState();
 
 
 
@@ -59,6 +60,7 @@ const AuthProvider = ({ children }) => {
 
     //seve user to server
     const saveUser = (user) => {
+        user.status = 'Not verified';
         fetch(`http://localhost:5000/users`, {
             method: 'POST',
             headers: {
@@ -89,6 +91,20 @@ const AuthProvider = ({ children }) => {
     }, [user?.email])
     // console.log(LoginUser);
 
+
+    //get jwt token
+    const getJwtToken = (email) => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then(res => res.json())
+            .then(data => {
+                const token = (data?.accessToken);
+                localStorage.setItem('accessToken', token);
+                setToken(token)
+            })
+    }
+
+    // console.log(token);
+
     const info = {
         handleEmailSingUp,
         handleGoogleLogIn,
@@ -100,6 +116,7 @@ const AuthProvider = ({ children }) => {
         saveUser,
         loading,
         lgUserLoading,
+        getJwtToken,
     }
 
     return (

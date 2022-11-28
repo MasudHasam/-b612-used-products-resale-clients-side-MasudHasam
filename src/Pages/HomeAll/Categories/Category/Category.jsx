@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query'
+// import { useQuery } from '@tanstack/react-query'
+import axios from "axios";
 
 const Category = () => {
+    const [categorys, setCategorys] = React.useState();
+    useEffect(() => {
+        axios.get('http://localhost:5000/category')
+            .then((response) => setCategorys(response.data))
+    }, [])
 
-    const { data: categorys = [] } = useQuery({
-        queryKey: ['category'],
-        queryFn: async () => {
-            const res = await fetch('http://localhost:5000/category')
-            const data = await res.json();
-            return data;
-        }
-    })
+    // const { data: categorys = [] } = useQuery({
+    //     queryKey: ['category'],
+    //     queryFn: async () => {
+    //         const res = await fetch('http://localhost:5000/category')
+    //         const data = await res.json();
+    //         return data;
+    //     }
+    // })
 
     return (
         <div className='mb-8'>

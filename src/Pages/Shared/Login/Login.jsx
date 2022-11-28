@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { handleGoogleLogIn, handleLogin, saveUser } = useContext(AuthContext);
+    const { handleGoogleLogIn, handleLogin, saveUser, getJwtToken } = useContext(AuthContext);
     const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from?.pathname || '/';
@@ -15,6 +15,7 @@ const Login = () => {
         handleLogin(data.email, data.password)
             .then(result => {
                 const user = result.user;
+                getJwtToken(data?.email);
                 navigate(from, { replace: true });
                 console.log(user);
             })
@@ -32,6 +33,7 @@ const Login = () => {
                     options: "Buyer"
                 }
                 saveUser(userInfo)
+                getJwtToken(user?.email)
                 navigate(from, { replace: true })
             })
             .catch(err => console.log(err));

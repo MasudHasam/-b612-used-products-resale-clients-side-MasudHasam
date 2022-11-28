@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import { data } from 'autoprefixer';
+import React, { useContext, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const { handleEmailSingUp, handleUserUpdate, saveUser } = useContext(AuthContext)
+    const { handleEmailSingUp, handleUserUpdate, saveUser, getJwtToken } = useContext(AuthContext)
     const navigaate = useNavigate();
 
     const handelSignUp = (data) => {
@@ -21,14 +22,13 @@ const SignUp = () => {
                         options: data.options
                     }
                     saveUser(userInfo)
+                    getJwtToken(data?.email)
                     navigaate('/')
                 }
                 console.log(user);
             })
             .catch(err => console.log(err));
     }
-
-
 
 
 

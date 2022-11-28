@@ -1,11 +1,17 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AllBuyers = () => {
+    const notify = () => toast('Here is your toast.');
     const { data: Buyers = [], refetch } = useQuery({
         queryKey: ['Buyers'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/Buyer`)
+            const res = await fetch(`http://localhost:5000/users/Buyer`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             const data = await res.json();
             return data;
         }
@@ -18,7 +24,7 @@ const AllBuyers = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    alert('user deleted successfully')
+                    toast.success('user deleted successfully')
                 }
                 refetch()
             })
@@ -44,11 +50,6 @@ const AllBuyers = () => {
                                 <tr key={buyer._id}>
                                     <td>
                                         <div className="flex items-center space-x-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-12 h-12">
-                                                    <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                                </div>
-                                            </div>
                                             <div>
                                                 <div className="font-bold">{buyer.name}</div>
                                             </div>
@@ -58,6 +59,7 @@ const AllBuyers = () => {
                                     <td>{buyer.options}</td>
                                     <th>
                                         <button onClick={() => handleBuyerDelete(buyer)} className="btn btn-outline btn-error btn-xs">Delete</button>
+                                        <Toaster />
                                     </th>
                                 </tr>
 

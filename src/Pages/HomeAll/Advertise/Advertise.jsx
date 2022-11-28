@@ -1,24 +1,45 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import { async } from '@firebase/util';
+import { config } from 'daisyui';
 
 const Advertise = () => {
     const { user } = useContext(AuthContext);
-    const { data: advertises = [], refetch } = useQuery({
-        queryKey: ['advertises'],
-        queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/advertisedProduct/${user?.email}`)
-            const data = await res.json();
-            return data;
+    const [advertises, setAdvertises] = useState();
+    // const { data: advertises = [], refetch } = useQuery({
+    //     queryKey: ['advertises'],
+    //     queryFn: async () => {
+    //         const res = await fetch(`http://localhost:5000/advertisedProduct/${user?.email}`, {
+    //             headers: {
+    //                 authorization: `bearer ${localStorage.getItem('accessToken')}`
+    //             }
+    //         })
+    //         const data = await res.json();
+    //         return data;
+    //     }
+    // })
+    useEffect(() => {
+        if (!user?.email) {
+            return;
+        } else {
+            fetch(`http://localhost:5000/advertisedProduct/${user?.email}`, {
+                // headers: {
+                //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+                // }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setAdvertises(data)
+                })
         }
-    })
-    refetch()
+    }, [user?.email, advertises?.length])
+
     return (
         <div>
             {
-                advertises?.length !== 0 &&
+                advertises?.length > 0 &&
                 <div className='my-20 text-center'>
                     <h1 className='text-4xl italic text-green-400'>Advertised Items</h1>
                     <div className='grid grid-cols-1 lg:grid-cols-4 mt-2 gap-4'>

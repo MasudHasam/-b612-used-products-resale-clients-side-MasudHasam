@@ -1,12 +1,17 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { CheckIcon } from '@heroicons/react/24/solid'
 
 const AllUsers = () => {
 
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/users/Seller`)
+            const res = await fetch(`http://localhost:5000/users/Seller`, {
+                headers: {
+                    authorization: `bearer ${localStorage.getItem('accessToken')}`
+                }
+            })
             const data = await res.json();
             return data;
         }
@@ -26,6 +31,21 @@ const AllUsers = () => {
             })
     }
 
+
+    //update seller status
+    const updateSeller = (seller) => {
+        console.log(seller);
+        fetch(`http://localhost:5000/seller/${seller._id}`, {
+            method: "PUT",
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                refetch()
+            })
+    }
+
+
     return (
         <div className='my-[22px]'>
             <h1 className='mb-3 text-center text-3xl font-bold text-teal-400'>All Sellers</h1>
@@ -36,30 +56,29 @@ const AllUsers = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Identity</th>
+                            <th>Status</th>
+                            <th>Verify Seller</th>
                             <th>Delete Seller</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            sellers?.map(sellers =>
+                            sellers?.map(seller =>
 
-                                <tr key={sellers._id}>
+                                <tr key={seller._id}>
                                     <td>
                                         <div className="flex items-center space-x-3">
-                                            <div className="avatar">
-                                                <div className="mask mask-squircle w-12 h-12">
-                                                    <img src="/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                                </div>
-                                            </div>
                                             <div>
-                                                <div className="font-bold">{sellers.name}</div>
+                                                <div className="font-bold">{seller.name}</div>
                                             </div>
                                         </div>
                                     </td>
-                                    <td>{sellers.email}</td>
-                                    <td>{sellers.options}</td>
+                                    <td>{seller.email}</td>
+                                    <td>{seller.options}</td>
+                                    <td className='flex text-green-500'>{seller.status} {seller.status === 'Verified' && <CheckIcon className='w-5 h-5'></CheckIcon>}</td>
+                                    <td><button onClick={() => updateSeller(seller)} className="btn btn-outline btn-success btn-xs">Verify</button></td>
                                     <th>
-                                        <button onClick={() => handleSellerDelete(sellers)} className="btn btn-outline btn-error btn-xs">Delete</button>
+                                        <button onClick={(sellers) => handleSellerDelete(seller)} className="btn btn-outline btn-error btn-xs">Delete</button>
                                     </th>
                                 </tr>
 
