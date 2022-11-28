@@ -4,8 +4,10 @@ import { Outlet } from 'react-router-dom';
 import Navbar from '../../Pages/Shared/Navbar/Navbar';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
+import TitleHooks from '../../TitleHook/TitleHook';
 
 const DashboardLayout = () => {
+    TitleHooks('dashboard')
     const { user, loginUser } = useContext(AuthContext);
     return (
         <div>

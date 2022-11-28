@@ -3,8 +3,10 @@ import React, { useContext, useEffect } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import TitleHooks from '../../../TitleHook/TitleHook';
 
 const SignUp = () => {
+    TitleHooks('signup')
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { handleEmailSingUp, handleUserUpdate, saveUser, getJwtToken } = useContext(AuthContext)
     const navigaate = useNavigate();
@@ -25,9 +27,9 @@ const SignUp = () => {
                     getJwtToken(data?.email)
                     navigaate('/')
                 }
-                console.log(user);
+                // console.log(user);
             })
-            .catch(err => console.log(err));
+            .catch(err => { });
     }
 
 

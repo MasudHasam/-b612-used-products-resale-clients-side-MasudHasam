@@ -1,10 +1,12 @@
 import { useQueries } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import TitleHooks from '../../../../TitleHook/TitleHook';
 import Modal from '../../../Shared/Modal/Modal';
 import Item from '../Item/Item';
 
 const Items = () => {
+    TitleHooks('items')
     const data = useLoaderData();
     const [openMOdal, setOpenModal] = useState(false);
 

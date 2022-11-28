@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import toast, { Toaster } from 'react-hot-toast';
+import TitleHooks from '../../TitleHook/TitleHook';
 
 const MyProducts = () => {
+    TitleHooks('my product')
     const { user } = useContext(AuthContext);
 
     const { data: products = [], refetch } = useQuery({
@@ -22,7 +24,7 @@ const MyProducts = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.matchedCount) {
                     toast.success('Your product is in advertise now')
                 } else {
@@ -37,7 +39,7 @@ const MyProducts = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.deletedCount > 0) {
                     toast.success('deleted successfully')
                 }

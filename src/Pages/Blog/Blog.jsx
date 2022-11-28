@@ -1,6 +1,8 @@
 import React from 'react';
+import TitleHooks from '../../TitleHook/TitleHook';
 
 const Blog = () => {
+    TitleHooks('blog')
     return (
         <div className='px-20'>
             <h1 className='text-4xl font-semibold text-yellow-600 text-start mt-4'>Some FAQ,,</h1>

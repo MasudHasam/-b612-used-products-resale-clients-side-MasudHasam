@@ -1,8 +1,10 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { CheckIcon } from '@heroicons/react/24/solid'
+import TitleHooks from '../../TitleHook/TitleHook';
 
 const AllUsers = () => {
+    TitleHooks('all user')
 
     const { data: sellers = [], refetch } = useQuery({
         queryKey: ['sellers'],
@@ -34,13 +36,13 @@ const AllUsers = () => {
 
     //update seller status
     const updateSeller = (seller) => {
-        console.log(seller);
+        // console.log(seller);
         fetch(`https://used-product-resale-server-orcin.vercel.app/seller/${seller._id}`, {
             method: "PUT",
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 refetch()
             })
     }

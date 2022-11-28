@@ -3,9 +3,11 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import 'react-toastify/dist/ReactToastify.css';
+import TitleHooks from '../../TitleHook/TitleHook';
 
 
 const AddProduct = () => {
+    TitleHooks('add product')
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
     const { user } = useContext(AuthContext)

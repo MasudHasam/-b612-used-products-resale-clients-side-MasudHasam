@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider';
+import TitleHooks from '../../../TitleHook/TitleHook';
 
 const Login = () => {
+    TitleHooks('login')
     const { register, handleSubmit, formState: { errors } } = useForm();
     const { handleGoogleLogIn, handleLogin, saveUser, getJwtToken } = useContext(AuthContext);
     const location = useLocation();
@@ -17,16 +19,16 @@ const Login = () => {
                 const user = result.user;
                 getJwtToken(data?.email);
                 navigate(from, { replace: true });
-                console.log(user);
+                // console.log(user);
             })
-            .catch(err => console.log(err));
+            .catch(err => { });
     }
 
     const handleGoogleSignIn = () => {
         handleGoogleLogIn()
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 const userInfo = {
                     name: user.displayName,
                     email: user.email,
@@ -36,7 +38,7 @@ const Login = () => {
                 getJwtToken(user?.email)
                 navigate(from, { replace: true })
             })
-            .catch(err => console.log(err));
+            .catch(err => { });
     }
 
 

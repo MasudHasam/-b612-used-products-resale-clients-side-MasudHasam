@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import { async } from '@firebase/util';
+import TitleHooks from '../../TitleHook/TitleHook';
 
 const MyOrders = () => {
+    TitleHooks('my orders')
     const { user } = useContext(AuthContext)
 
     const { data: orders = [], refetch } = useQuery({
