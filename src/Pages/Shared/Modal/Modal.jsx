@@ -7,14 +7,14 @@ const Modal = ({ data, setOpenModal }) => {
         event.preventDefault();
         const form = event.target;
         const name = form.name.value;
-        const emai = form.email.value;
+        const email = form.email.value;
         const itemName = form.item.value;
         const itemPrice = form.price.value;
         const phone = form.phone.value;
         const location = form.location.value;
         const bookingInfo = {
             name,
-            emai,
+            email,
             itemName,
             itemPrice,
             phone,
