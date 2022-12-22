@@ -53,7 +53,7 @@ const MyProducts = () => {
 
     return (
         <div className='my-10 flex flex-col gap-8'>
-            <h1 className='text-3xl text-green-400 italic text-center'>All of my added products</h1>
+            <h1 className='text-3xl text-green-400 italic text-center'>All of my added products here</h1>
             {
                 products?.map(product =>
 
